@@ -1,4 +1,4 @@
-# Build My Future 🚀
+# Build My Future
 
 Un carnet de bord numérique dédié au parcours étudiant qui documente expériences, conseils et ressources pour construire son avenir professionnel.
 
