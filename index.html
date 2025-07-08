@@ -1145,6 +1145,78 @@ bonjour("toi")</code></pre>
                         }
                     ];
                     break;
+                case 'programmation':
+                    categoryTitle = '💻 Programmation';
+                    categoryDescription = 'Découverte des langages de programmation et premiers projets';
+                    articles = [
+                        {
+                            title: 'Mes premiers pas avec Python',
+                            date: '28 mars 2025',
+                            excerpt: 'Retour d\'expérience sur mon apprentissage de ce langage accessible et polyvalent.',
+                            action: () => showArticle('python')
+                        },
+                        {
+                            title: 'Créer son premier site web (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'HTML, CSS, JavaScript : par où commencer pour créer sa première page web.',
+                            action: () => alert('Article en préparation ! 😊')
+                        },
+                        {
+                            title: 'Git et GitHub pour débutants (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Apprendre les bases du versioning et du travail collaboratif.',
+                            action: () => alert('Article en préparation ! 😊')
+                        }
+                    ];
+                    break;
+                case 'projets':
+                    categoryTitle = '🚀 Projets';
+                    categoryDescription = 'Retours d\'expérience sur projets personnels et stages';
+                    articles = [
+                        {
+                            title: 'Mon premier stage en développement (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Ce que j\'ai appris, les difficultés rencontrées et mes conseils.',
+                            action: () => alert('Article en préparation ! 😊')
+                        },
+                        {
+                            title: 'Créer un portfolio étudiant (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Comment mettre en valeur ses projets et compétences.',
+                            action: () => alert('Article en préparation ! 😊')
+                        },
+                        {
+                            title: 'Participer à un hackathon (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Mon expérience lors de ma première compétition de programmation.',
+                            action: () => alert('Article en préparation ! 😊')
+                        }
+                    ];
+                    break;
+                case 'orientation':
+                    categoryTitle = '🎯 Orientation';
+                    categoryDescription = 'Réflexions sur l\'orientation et construction du projet professionnel';
+                    articles = [
+                        {
+                            title: 'Comment j\'ai choisi le développement web (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Les questionnements, découvertes et décisions qui m\'ont menée ici.',
+                            action: () => alert('Article en préparation ! 😊')
+                        },
+                        {
+                            title: 'Rencontrer des professionnels (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'L\'importance du réseau et comment créer ses premiers contacts.',
+                            action: () => alert('Article en préparation ! 😊')
+                        },
+                        {
+                            title: 'Études courtes vs études longues (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Mes réflexions sur les différents parcours possibles.',
+                            action: () => alert('Article en préparation ! 😊')
+                        }
+                    ];
+                    break;
                 default:
                     showPage('home');
                     return;
