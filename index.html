@@ -1079,17 +1079,138 @@ bonjour("toi")</code></pre>
 
         // Afficher les articles d'une catégorie
         function showCategoryArticles(category) {
-            // Pour l'instant, on redirige vers la page d'accueil
-            // Dans une vraie application, on filtrerait les articles
-            showPage('home');
+            // Créer une page dynamique pour la catégorie
+            let categoryTitle = '';
+            let categoryDescription = '';
+            let articles = [];
             
-            // Optionnel : scroll vers les articles
-            setTimeout(() => {
-                const articlesSection = document.querySelector('.articles-grid');
-                if (articlesSection) {
-                    articlesSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 100);
+            switch(category) {
+                case 'etudes':
+                    categoryTitle = '📚 Études';
+                    categoryDescription = 'Méthodes de travail, organisation des révisions et techniques d\'apprentissage';
+                    articles = [
+                        {
+                            title: 'Mon organisation pendant les partiels',
+                            date: '15 avril 2025',
+                            excerpt: 'Gérer son temps, prioriser, souffler : voici ma méthode pour survivre aux examens.',
+                            action: () => showArticle('organization')
+                        },
+                        {
+                            title: 'Les outils numériques indispensables',
+                            date: '10 mars 2025',
+                            excerpt: 'Découvrez les applications qui ont révolutionné ma façon d\'étudier.',
+                            action: () => showArticle('tools')
+                        }
+                    ];
+                    break;
+                case 'outils':
+                    categoryTitle = '🛠️ Outils numériques';
+                    categoryDescription = 'Applications et plateformes qui facilitent la vie étudiante';
+                    articles = [
+                        {
+                            title: 'Découverte : Trello pour les étudiant·e·s',
+                            date: '10 avril 2025',
+                            excerpt: 'Un outil simple et efficace pour suivre ses tâches, ses cours et ses projets perso.',
+                            action: () => showArticle('trello')
+                        },
+                        {
+                            title: 'Les outils numériques indispensables',
+                            date: '10 mars 2025',
+                            excerpt: 'Notion, Anki, Forest... mes applications favorites pour étudier efficacement.',
+                            action: () => showArticle('tools')
+                        },
+                        {
+                            title: 'Mes premiers pas avec Python',
+                            date: '28 mars 2025',
+                            excerpt: 'Retour d\'expérience sur mon apprentissage de ce langage de programmation.',
+                            action: () => showArticle('python')
+                        }
+                    ];
+                    break;
+                case 'motivation':
+                    categoryTitle = '💪 Motivation';
+                    categoryDescription = 'Conseils pour rester motivé et gérer le stress étudiant';
+                    articles = [
+                        {
+                            title: 'Mon organisation pendant les partiels',
+                            date: '15 avril 2025',
+                            excerpt: 'Comment garder le moral et l\'efficacité pendant cette période stressante.',
+                            action: () => showArticle('organization')
+                        },
+                        {
+                            title: 'Gérer le stress des études (bientôt)',
+                            date: 'À venir',
+                            excerpt: 'Mes techniques pour rester zen même quand tout s\'accumule.',
+                            action: () => alert('Article en préparation ! 😊')
+                        }
+                    ];
+                    break;
+                default:
+                    showPage('home');
+                    return;
+            }
+            
+            // Créer et afficher la page de catégorie
+            createCategoryPage(categoryTitle, categoryDescription, articles);
+        }
+        
+        // Créer une page de catégorie dynamiquement
+        function createCategoryPage(title, description, articles) {
+            // Cacher toutes les pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Créer le contenu HTML
+            let articlesHTML = '';
+            articles.forEach(article => {
+                articlesHTML += `
+                    <article class="article-card">
+                        <h3>${article.title}</h3>
+                        <div class="article-meta">
+                            <time>${article.date}</time>
+                        </div>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <a href="#" onclick="(${article.action.toString()})()" class="read-more">Lire la suite</a>
+                    </article>
+                `;
+            });
+            
+            const categoryPageHTML = `
+                <main>
+                    <div class="page-header">
+                        <div class="container">
+                            <h1>${title}</h1>
+                            <p>${description}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="content">
+                        <div class="container">
+                            <div class="articles-grid">
+                                ${articlesHTML}
+                            </div>
+                            <div style="text-align: center; margin-top: 3rem;">
+                                <a href="#" onclick="showPage('home')" class="read-more">← Retour à l'accueil</a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            `;
+            
+            // Créer ou mettre à jour la page de catégorie
+            let categoryPage = document.getElementById('category-page');
+            if (!categoryPage) {
+                categoryPage = document.createElement('div');
+                categoryPage.id = 'category-page';
+                categoryPage.className = 'page';
+                document.body.appendChild(categoryPage);
+            }
+            
+            categoryPage.innerHTML = categoryPageHTML;
+            categoryPage.classList.remove('hidden');
+            
+            // Scroll vers le haut
+            window.scrollTo(0, 0);
         }
 
         // Gestion du formulaire de contact
