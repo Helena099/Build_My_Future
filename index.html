@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build My Future</title>
+    <style>
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .logo p {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Main content */
+        main {
+            background: white;
+            margin: 2rem auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 70vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-card h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        footer nav ul {
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        /* Pages internes */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            color: #333;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        .article-content h3 {
+            color: #555;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .article-content ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .article-content blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .article-content pre {
+            background: #282c34;
+            color: #61dafb;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .article-content code {
+            background: #f1f3f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Contact form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+
+            .article-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-card, .category-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Build My Future</h1>
+                <p><em>Partager, progresser, construire.</em></p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')" class="active">Accueil</a></li>
+                    <li><a href="#" onclick="showPage('categories')">Catégories</a></li>
+                    <li><a href="#" onclick="showPage('about')">À propos</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE D'ACCUEIL -->
+    <div id="home" class="page">
+        <main>
+            <div class="hero">
+                <div class="container">
+                    <h2>Construisons ensemble notre avenir</h2>
+                    <p>Un carnet de bord numérique dédié au parcours étudiant qui documente expériences, conseils et ressources pour construire son avenir professionnel.</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="container">
+                    <h2>Articles récents</h2>
+                    
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <h3>Mon organisation pendant les partiels</h3>
+                            <div class="article-meta">
+                                <time datetime="2025-04-15">15 avril 2025</time>
+                            </div>
+                            <p class="article-excerpt">Gérer son temps, prioriser, souffler : voici ma méthode pour survivre aux examens sans perdre la tête.</p>
+                            <a href="#" onclick="showArticle('organization')" class="read-more">Lire la suite</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3>Découverte : Trello pour les étudiant·e·s</h3>
+                            <div class="article-meta">
+                                <time datetime="2025-04-10">10 avril 2025</time>
+                            </div>
+                            <p class="article-excerpt">Un outil simple et efficace pour suivre ses tâches, ses cours et ses projets perso.</p>
+                            <a href="#" onclick="showArticle('trello')" class="read-more">Lire la suite</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3>Les outils numériques indispensables</h3>
+                            <div class="article-meta">
+                                <time datetime="2025-03-10">10 mars 2025</time>
+                            </div>
+                            <p class="article-excerpt">Découvrez les applications qui ont révolutionné ma façon d'étudier et d'organiser mon travail.</p>
+                            <a href="#" onclick="showArticle('tools')" class="read-more">Lire la suite</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3>Mes premiers pas avec Python</h3>
+                            <div class="article-meta">
+                                <time datetime="2025-03-28">28 mars 2025</time>
+                            </div>
+                            <p class="article-excerpt">Retour d'expérience sur mon apprentissage de Python : difficultés, ressources et premiers projets.</p>
+                            <a href="#" onclick="showArticle('python')" class="read-more">Lire la suite</a>
+                        </article>
+                    </div>
+
+                    <div class="sidebar">
+                        <h3>Catégories populaires</h3>
+                        <ul>
+                            <li><a href="#" onclick="showCategoryArticles('etudes')">📚 Études</a></li>
+                            <li><a href="#" onclick="showCategoryArticles('outils')">🛠️ Outils numériques</a></li>
+                            <li><a href="#" onclick="showCategoryArticles('motivation')">💪 Motivation</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PAGE CATEGORIES -->
+    <div id="categories" class="page hidden">
+        <main>
+            <div class="page-header">
+                <div class="container">
+                    <h1>Catégories</h1>
+                    <p>Explorez le contenu organisé par thématiques</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="container">
+                    <div class="categories-grid">
+                        <div class="category-card">
+                            <div class="category-icon">📚</div>
+                            <h3>Études</h3>
+                            <p>Méthodes de travail, organisation des révisions, conseils pour les examens et techniques d'apprentissage efficaces.</p>
+                            <a href="#" onclick="showCategoryArticles('etudes')" class="read-more">Voir les articles</a>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">🛠️</div>
+                            <h3>Outils numériques</h3>
+                            <p>Applications, logiciels et plateformes qui facilitent la vie étudiante et améliorent la productivité.</p>
+                            <a href="#" onclick="showCategoryArticles('outils')" class="read-more">Voir les articles</a>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">💪</div>
+                            <h3>Motivation</h3>
+                            <p>Conseils pour rester motivé, gérer le stress, maintenir un équilibre vie étudiante/vie personnelle.</p>
+                            <a href="#" onclick="showCategoryArticles('motivation')" class="read-more">Voir les articles</a>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">💻</div>
+                            <h3>Programmation</h3>
+                            <p>Découverte des langages de programmation, premiers projets et ressources d'apprentissage.</p>
+                            <a href="#" onclick="showCategoryArticles('programmation')" class="read-more">Voir les articles</a>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">🚀</div>
+                            <h3>Projets</h3>
+                            <p>Retours d'expérience sur des projets personnels, stages et réalisations concrètes.</p>
+                            <a href="#" onclick="showCategoryArticles('projets')" class="read-more">Voir les articles</a>
+                        </div>
+
+                        <div class="category-card">
+                            <div class="category-icon">🎯</div>
+                            <h3>Orientation</h3>
+                            <p>Réflexions sur l'orientation professionnelle, découverte des métiers et construction du projet professionnel.</p>
+                            <a href="#" onclick="showCategoryArticles('orientation')" class="read-more">Voir les articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PAGE A PROPOS -->
+    <div id="about" class="page hidden">
+        <main>
+            <div class="page-header">
+                <div class="container">
+                    <h1>À propos</h1>
+                    <p>Qui se cache derrière Build My Future ?</p>
+                </div>
+            </div>
+            
+            <div class="article-content">
+                <div class="container">
+                    <h2>Salut ! 👋</h2>
+                    <p>Je suis une étudiante en développement web passionnée par les nouvelles technologies et l'apprentissage continu. J'ai créé ce blog pour documenter mon parcours académique et partager mes découvertes avec d'autres étudiants.</p>
+
+                    <h2>Mon parcours</h2>
+                    <p>Actuellement en formation de développement web, je découvre chaque jour de nouveaux outils, langages et méthodologies. Entre les cours théoriques, les projets pratiques et les stages, chaque expérience m'apprend quelque chose de nouveau.</p>
+
+                    <h2>Pourquoi ce blog ?</h2>
+                    <p>L'idée de "Build My Future" est née d'un constat simple : il n'est pas toujours facile de s'y retrouver dans la masse d'informations disponibles quand on est étudiant. J'ai donc décidé de créer un espace où partager :</p>
+                    <ul>
+                        <li>Mes méthodes d'organisation et de travail</li>
+                        <li>Les outils numériques qui me facilitent la vie</li>
+                        <li>Mes retours d'expérience sur les projets et stages</li>
+                        <li>Des conseils pour rester motivé et gérer le stress</li>
+                        <li>Mes découvertes en programmation et développement web</li>
+                    </ul>
+
+                    <h2>Ma philosophie</h2>
+                    <p>Je crois fermement que partager nos expériences, même les plus simples, peut aider d'autres personnes dans leur parcours. Chaque échec est une leçon, chaque réussite une source d'inspiration.</p>
+
+                    <blockquote>
+                        "L'apprentissage est un voyage, pas une destination. Chaque étape compte, même les plus petites."
+                    </blockquote>
+
+                    <h2>Mes intérêts</h2>
+                    <p>En dehors des études, je m'intéresse à :</p>
+                    <ul>
+                        <li>🎨 Le design d'interfaces utilisateur</li>
+                        <li>📱 Les nouvelles technologies et applications</li>
+                        <li>📚 La lecture d'articles techniques et de blogs</li>
+                        <li>🌱 Le développement personnel et la productivité</li>
+                        <li>☕ Les longs cafés entre amis pour refaire le monde</li>
+                    </ul>
+
+                    <h2>Restons en contact !</h2>
+                    <p>Si mes articles vous ont plu, n'hésitez pas à me contacter via la page de contact. Je serais ravie d'échanger avec vous sur vos propres expériences et projets !</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PAGE CONTACT -->
+    <div id="contact" class="page hidden">
+        <main>
+            <div class="page-header">
+                <div class="container">
+                    <h1>Contact</h1>
+                    <p>Une question ? Une suggestion ? Envoyez-moi un message !</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="container">
+                    <div class="contact-form">
+                        <form onsubmit="handleContactForm(event)">
+                            <div class="form-group">
+                                <label for="name">Nom complet *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Adresse e-mail *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Sujet *</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Votre message *</label>
+                                <textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Envoyer le message</button>
+                        </form>
+
+                        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+                            <h3>Autres moyens de me contacter</h3>
+                            <p style="margin-top: 1rem; color: #666;">
+                                📧 Email : contact@buildmyfuture.fr<br>
+                                💬 Réseaux sociaux : @buildmyfuture<br>
+                                🕒 Je réponds généralement sous 24-48h
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ARTICLE: OUTILS NUMERIQUES -->
+    <div id="article-tools" class="page hidden">
+        <main>
+            <div class="page-header">
+                <div class="container">
+                    <h1>Les outils numériques indispensables pour étudier</h1>
+                    <p>10 mars 2025 – Par Build My Future</p>
+                </div>
+            </div>
+            
+            <div class="article-content">
+                <div class="container">
+                    <h2>Pourquoi les outils numériques sont devenus essentiels</h2>
+                    <p>Avec la généralisation des cours à distance, des PDF de 150 pages et des plannings imprévisibles, les outils numériques ne sont plus juste un "plus" : ils sont devenus un réflexe. Que ce soit pour prendre des notes, planifier ses révisions ou collaborer, ils simplifient énormément le quotidien étudiant.</p>
+                    
+                    <p>Dans cet article, je te présente les outils qui ont littéralement changé ma façon d'étudier. Je les utilise tous régulièrement, chacun avec un rôle bien défini.</p>
+
+                    <h2>1. Notion – mon cerveau numérique</h2>
+                    <p>Notion me permet de centraliser tout : cours, fiches de révision, plannings, objectifs. Je peux structurer une page par matière, créer des bases de données pour mes devoirs ou mes notes, et même y intégrer des rappels.</p>
+                    
+                    <p>Son côté "tout-en-un" me permet d'éviter de passer d'un outil à l'autre. J'y écris aussi mes bilans de semaine pour suivre mes progrès.</p>
+
+                    <h2>2. Trello – pour visualiser mes tâches</h2>
+                    <p>Trello fonctionne en tableaux. J'y crée des colonnes : "À faire", "En cours", "Terminé". Ça m'aide à voir où j'en suis dans mes révisions, devoirs ou projets de groupe.</p>
+                    
+                    <p>Je l'utilise aussi pour répartir mes tâches sur la semaine : par exemple, "Fiche Chapitre 3", "Exercice de Python", ou "Relire fiche d'éco".</p>
+
+                    <h2>3. Anki – booster la mémoire long terme</h2>
+                    <p>J'ai découvert Anki un peu par hasard. C'est une appli de flashcards qui s'appuie sur la répétition espacée. Plus tu connais bien une carte, plus elle revient tard. Très utile pour les dates, définitions ou vocabulaire.</p>
+                    
+                    <p>J'ai créé mes propres decks pour l'histoire, l'anglais, et même certaines notions de code. Résultat : je retiens beaucoup mieux et sans m'en rendre compte.</p>
+
+                    <h2>4. Google Drive – collaboration simplifiée</h2>
+                    <p>C'est l'outil que j'utilise quand je travaille à plusieurs. On partage des documents, on commente en temps réel, et chacun peut modifier à distance. Idéal pour les exposés ou les dossiers de groupe.</p>
+                    
+                    <p>Je synchronise aussi mes documents importants sur le cloud pour y accéder depuis n'importe où (et ne rien perdre si mon PC plante 😬).</p>
+
+                    <h2>5. Forest – rester concentré·e</h2>
+                    <p>Forest m'aide à rester loin de mon téléphone pendant que je révise. Le principe est simple : tu plantes un arbre, et il pousse tant que tu ne touches pas à ton écran. Si tu quittes l'application, l'arbre meurt. C'est ludique mais très efficace.</p>
+                    
+                    <p>Et petit bonus : plus tu travailles, plus tu plantes d'arbres virtuels… et même réels avec la version payante 🌳</p>
+
+                    <h2>Comment je les combine au quotidien</h2>
+                    <p>Chaque dimanche soir, je prends 20 minutes pour :</p>
+                    <ul>
+                        <li>Organiser ma semaine dans Notion</li>
+                        <li>Répartir les tâches dans Trello</li>
+                        <li>Programmer mes sessions d'Anki (3 sessions de 15 minutes)</li>
+                        <li>Faire une sauvegarde rapide dans Google Drive</li>
+                    </ul>
+                    
+                    <p>Ensuite, j'essaie de travailler en blocs de 25 minutes avec Forest. Cette routine me donne une vraie structure sans être trop rigide.</p>
+
+                    <blockquote>
+                        "L'outil parfait n'existe pas. Mais une bonne combinaison d'outils simples peut faire toute la différence." – Moi, après 3 semestres d'expérimentations.
+                    </blockquote>
+
+                    <h2>Conclusion : choisis ce qui te convient</h2>
+                    <p>Ces outils ne conviennent peut-être pas à tout le monde, mais pour moi, ils ont fait une vraie différence. Mon conseil ? Prends le temps d'en tester quelques-uns, mais n'en utilise pas 10 à la fois. Commence simple, puis adapte selon ton style d'apprentissage.</p>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="#" onclick="showPage('home')" class="read-more">← Retour aux articles</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ARTICLE: PYTHON -->
+    <div id="article-python" class="page hidden">
+        <main>
+            <div class="page-header">
+                <div class="container">
+                    <h1>Mes premiers pas avec Python</h1>
+                    <p>28 mars 2025 – Par Build My Future</p>
+                </div>
+            </div>
+            
+            <div class="article-content">
+                <div class="container">
+                    <h2>Pourquoi j'ai choisi Python ?</h2>
+                    <p>Avant de me lancer dans le développement web, j'avais entendu parler de plusieurs langages : JavaScript, Java, C++, mais c'est Python qui revenait souvent. Il était décrit comme simple à apprendre, polyvalent, et largement utilisé dans des domaines très différents comme la data science, l'automatisation ou l'intelligence artificielle.</p>
+                    
+                    <p>J'ai donc décidé de le tester, sans pression. Et franchement, je ne regrette pas. Sa syntaxe claire m'a permis de me concentrer sur la <strong>logique</strong>, sans me perdre dans les détails techniques.</p>
+
+                    <h2>Les premières notions que j'ai apprises</h2>
+                    <p>Lors de mes premiers jours avec Python, j'ai appris à :</p>
+                    <ul>
+                        <li>Créer des variables (et comprendre les types de données)</li>
+                        <li>Faire des conditions simples (<code>if</code>, <code>else</code>, <code>elif</code>)</li>
+                        <li>Utiliser des boucles (<code>for</code>, <code>while</code>)</li>
+                        <li>Définir mes premières fonctions</li>
+                        <li>Manipuler des listes et des dictionnaires</li>
+                    </ul>
+
+                    <h2>Mon tout premier script Python</h2>
+                    <p>Ce petit bout de code m'a vraiment donné confiance. Je voyais enfin quelque chose de concret s'afficher.</p>
+                    
+                    <pre><code>def bonjour(nom):
+    print("Bonjour, " + nom + "!")
+
+bonjour("toi")</code></pre>
+                    
+                    <p>Rien de fou, mais ce sentiment de "j'ai fait ça toute seule" est ultra satisfaisant. J'ai rapidement voulu aller plus loin.</p>
+
+                    <h2>Les ressources que j'ai utilisées</h2>
+                    <p>J'ai principalement appris grâce à ces ressources :</p>
+                    <ul>
+                        <li><strong>OpenClassrooms</strong> – Très pédagogique, avec des exercices corrigés</li>
+                        <li><strong>W3Schools Python</strong> – Pour les bases rapides et les tests en ligne</li>
+                        <li><strong>YouTube (ex. Graven, Apprendre Python)</strong> – Parfait pour visualiser les concepts</li>
+                        <li><strong>Replit</strong> – Pour coder sans installer quoi que ce soit</li>
+                    </ul>
+
+                    <h2>Mes premières difficultés</h2>
+                    <p>Le plus dur ? Comprendre les erreurs. Python est sympa, mais quand on oublie une indentation ou un <code>:</code>... il n'hésite pas à afficher une jolie erreur 😅</p>
+                    
+                    <p>J'ai aussi eu du mal au début à comprendre la logique des boucles imbriquées ou des fonctions qui retournent des valeurs.</p>
+
+                    <blockquote>
+                        "Ne pas comprendre une erreur, c'est déjà un premier pas vers la comprendre." – Moi, après 3 bugs et un café.
+                    </blockquote>
+
+                    <h2>Et maintenant ?</h2>
+                    <p>J'en suis encore au début, mais j'aimerais aller vers la <strong>programmation orientée objet</strong>, puis tester <strong>Flask</strong> pour créer des applications web simples.</p>
+                    
+                    <p>Je pense aussi explorer le côté "automatisation" de Python pour me faciliter certaines tâches du quotidien (renommer des fichiers, générer des rapports, etc.).</p>
+
+                    <h2>Mon conseil si tu veux débuter aussi</h2>
+                    <p>Lance-toi sans pression. Python est un excellent premier langage pour apprendre la logique de programmation. Et surtout : <strong>pratique</strong>. Même 15 minutes par jour, c'est déjà ça !</p>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="#" onclick="showPage('home')" class="read-more">← Retour aux articles</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Build My Future – Tous droits réservés</p>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Accueil</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                    <li><a href="#" onclick="showPage('about')">À propos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation entre les pages
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Afficher la page demandée
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Mettre à jour la navigation active
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Scroll vers le haut
+            window.scrollTo(0, 0);
+        }
+
+        // Afficher un article spécifique
+        function showArticle(articleId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            document.getElementById('article-' + articleId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Afficher les articles d'une catégorie
+        function showCategoryArticles(category) {
+            // Pour l'instant, on redirige vers la page d'accueil
+            // Dans une vraie application, on filtrerait les articles
+            showPage('home');
+            
+            // Optionnel : scroll vers les articles
+            setTimeout(() => {
+                const articlesSection = document.querySelector('.articles-grid');
+                if (articlesSection) {
+                    articlesSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
+
+        // Gestion du formulaire de contact
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Simulation d'envoi
+            alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
+            event.target.reset();
+        }
+
+        // Gestion du menu mobile (si nécessaire)
+        function toggleMobileMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Animation au scroll (optionnel)
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.article-card, .category-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Afficher la page d'accueil par défaut
+            showPage('home');
+            
+            // Écouter le scroll pour les animations
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
